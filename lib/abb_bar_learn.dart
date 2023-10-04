@@ -5,8 +5,11 @@ class AppBarView extends StatelessWidget {
   final String title = 'Welcome Back';
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(appBar: AppBar(
-      title: Text(title),
-    ),);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+        centerTitle: true,
+      ),
+    );
   }
 }
