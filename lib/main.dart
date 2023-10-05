@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/abb_bar_learn.dart';
+import 'package:flutter_application_1/first_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,8 +17,18 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
-      home: const AppBarView(),
+      // appbarın her sayfada aynı olmasını istediğimiz özellikleri copywith ile yapıyoruz.
+      theme: ThemeData.dark().copyWith(
+          // card theme burada verilebilir
+          cardTheme: CardTheme(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20))),
+          // colorScheme: const ColorScheme.dark(),
+          appBarTheme: const AppBarTheme(
+              centerTitle: true,
+              backgroundColor: Colors.transparent,
+              elevation: 0)),
+      home: FirstPage(),
     );
   }
 }
