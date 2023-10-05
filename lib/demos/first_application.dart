@@ -23,7 +23,13 @@ class FirstApp extends StatelessWidget {
         child: Column(children: [
           Center(
               child: SizedBox(
-                  width: 350, height: 350, child: Image.network(_imagePath))),
+                  width: 350,
+                  height: 350,
+                  child: Image.network(
+                    _imagePath,
+                    errorBuilder: (context, error, stackTrace) =>
+                        const CircularProgressIndicator(),
+                  ))),
           const SizedBox(
             height: 10,
           ),
