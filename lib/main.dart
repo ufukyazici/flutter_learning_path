@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/indicator_learn.dart';
+import 'package:flutter_application_1/column_row_learn.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,6 +19,8 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       // appbarın her sayfada aynı olmasını istediğimiz özellikleri copywith ile yapıyoruz.
       theme: ThemeData.dark().copyWith(
+          listTileTheme:
+              const ListTileThemeData(contentPadding: EdgeInsets.zero),
           progressIndicatorTheme:
               const ProgressIndicatorThemeData(color: Colors.deepPurple),
           // card theme burada verilebilir
@@ -30,7 +32,7 @@ class _MyAppState extends State<MyApp> {
               centerTitle: true,
               backgroundColor: Colors.transparent,
               elevation: 0)),
-      home: const IndicatorLearn(),
+      home: const ColumnRowLearn(),
     );
   }
 }
