@@ -9,15 +9,53 @@ class LifeCycle extends StatefulWidget {
 }
 
 class _LifeCycleState extends State<LifeCycle> {
+  String _message = "";
+  late final bool _isOdd;
+  // ekran çizilmeden önce initstateden sonra çalışır.
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+
+  // eski veri ile yeni veri arasında fark olduğunda çalışır !!!!ÇOK ÖNEMLİ!!!!
+  @override
+  void didUpdateWidget(covariant LifeCycle oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.message != widget.message) {
+      _message = widget.message;
+      _computeName();
+      setState(() {});
+    }
+  }
+
+  // ekran değiştiğinde yani öldüğünde çağrılır aynı şekilde çok önemli
+  @override
+  void dispose() {
+    super.dispose();
+    _message = "";
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _message = widget.message;
+    _isOdd = widget.message.length.isOdd;
+    _computeName();
+  }
+
+  void _computeName() {
+    _isOdd == true ? (_message += " odd") : (_message += " even");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: widget.message.length.isOdd ? const Text("tek") : const Text("çift"),
+        title: Text(_message),
       ),
-      body: widget.message.length.isOdd
-          ? TextButton(onPressed: () {}, child: Text(widget.message))
-          : ElevatedButton(onPressed: () {}, child: const Text("sa")),
+      body: Column(
+        children: [ElevatedButton(onPressed: () {}, child: Text(_message))],
+      ),
     );
   }
 }

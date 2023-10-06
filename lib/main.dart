@@ -25,7 +25,7 @@ class _MyAppState extends State<MyApp> {
           cardTheme: CardTheme(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
           // colorScheme: const ColorScheme.dark(),
           appBarTheme: const AppBarTheme(centerTitle: true, backgroundColor: Colors.transparent, elevation: 0)),
-      home: const LifeCycle(message: "hosgeldin"),
+      home: const LifeCycle(message: "hosgeldizeeqe35673435"),
     );
   }
 }
