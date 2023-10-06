@@ -18,40 +18,39 @@ class Practice extends StatelessWidget {
         ],
       ),
       body: Column(children: [
-        Row(
-          children: [
-            _PngImage2(imageName: _imageName, imageSizes: 160),
-            _ColumnWidget(imageName: _imageName),
-            _ColumnWidget(imageName: _imageName),
-            _ColumnWidget(imageName: _imageName),
-          ],
-        ),
-        Row(
-          children: [
-            _PngImage2(imageName: _imageName2, imageSizes: 160),
-            _ColumnWidget(imageName: _imageName2),
-            _ColumnWidget(imageName: _imageName2),
-            _ColumnWidget(imageName: _imageName2),
-          ],
-        ),
-        Row(
-          children: [
-            _PngImage2(imageName: _imageName3, imageSizes: 160),
-            _ColumnWidget(imageName: _imageName3),
-            _ColumnWidget(imageName: _imageName3),
-            _ColumnWidget(imageName: _imageName3),
-          ],
-        )
+        _RowWidget(imageName3: _imageName),
+        _RowWidget(imageName3: _imageName2),
+        _RowWidget(imageName3: _imageName3),
       ]),
       bottomNavigationBar: BottomNavigationBar(items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: "home"),
         BottomNavigationBarItem(
-            icon: Icon(Icons.accessible_forward_outlined), label: "vınnn"),
+            icon: Icon(Icons.accessible_forward_outlined), label: "vınnn")
       ]),
       floatingActionButton:
           FloatingActionButton(onPressed: () {}, child: const Icon(Icons.add)),
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,
+    );
+  }
+}
+
+class _RowWidget extends StatelessWidget {
+  const _RowWidget({
+    required String imageName3,
+  }) : _imageName3 = imageName3;
+
+  final String _imageName3;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        _PngImage2(imageName: _imageName3, imageSizes: 160),
+        _ColumnWidget(imageName: _imageName3),
+        _ColumnWidget(imageName: _imageName3),
+        _ColumnWidget(imageName: _imageName3)
+      ],
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/demos/practicing.dart';
+import 'package:flutter_application_1/custom_widget_learn.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
               centerTitle: true,
               backgroundColor: Colors.transparent,
               elevation: 0)),
-      home: const Practice(),
+      home: const CustomWidget(),
     );
   }
 }
