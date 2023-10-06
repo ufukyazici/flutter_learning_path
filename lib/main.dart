@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/column_row_learn.dart';
+import 'package:flutter_application_1/demos/stack_demo_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
               centerTitle: true,
               backgroundColor: Colors.transparent,
               elevation: 0)),
-      home: const ColumnRowLearn(),
+      home: const StackView(),
     );
   }
 }

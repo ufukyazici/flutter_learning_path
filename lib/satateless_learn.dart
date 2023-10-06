@@ -10,21 +10,21 @@ class StatelessLearn extends StatelessWidget {
         body: const Column(
           children: [
             TitleTextWidget(title: "ProductName"),
-            _emptyBox(),
+            _EmptyBox(),
             TitleTextWidget(title: "Description"),
-            _emptyBox(),
+            _EmptyBox(),
             TitleTextWidget(title: "Price"),
-            _emptyBox(),
+            _EmptyBox(),
             TitleTextWidget(title: "Comments"),
             _CustomContainer(),
-            _emptyBox()
+            _EmptyBox()
           ],
         ));
   }
 }
 
-class _emptyBox extends StatelessWidget {
-  const _emptyBox();
+class _EmptyBox extends StatelessWidget {
+  const _EmptyBox();
 
   @override
   Widget build(BuildContext context) {
