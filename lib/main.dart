@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/demos/color_life_cycle_view.dart';
+import 'package:flutter_application_1/practice/practice3.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
           cardTheme: CardTheme(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
           // colorScheme: const ColorScheme.dark(),
           appBarTheme: const AppBarTheme(centerTitle: true, backgroundColor: Colors.transparent, elevation: 0)),
-      home: const ColorLifeCycleView(),
+      home: const Practice3(),
     );
   }
 }

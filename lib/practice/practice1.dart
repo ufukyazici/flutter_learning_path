@@ -4,15 +4,15 @@ import 'package:flutter_application_1/indicator_learn.dart';
 import 'package:flutter_application_1/product/language/language_items.dart';
 import 'package:flutter_application_1/stack_learn.dart';
 
-class PracticeView extends StatefulWidget {
-  const PracticeView({super.key, this.userName});
+class Practice1 extends StatefulWidget {
+  const Practice1({super.key, this.userName});
   final String? userName;
 
   @override
-  State<PracticeView> createState() => _PracticeViewState();
+  State<Practice1> createState() => _Practice1State();
 }
 
-class _PracticeViewState extends State<PracticeView> {
+class _Practice1State extends State<Practice1> {
   String _message = "";
   late bool userAuthorized;
 
@@ -28,7 +28,7 @@ class _PracticeViewState extends State<PracticeView> {
   }
 
   @override
-  void didUpdateWidget(covariant PracticeView oldWidget) {
+  void didUpdateWidget(covariant Practice1 oldWidget) {
     super.didUpdateWidget(oldWidget);
     _message = "";
     _userNameCheck();

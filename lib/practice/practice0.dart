@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Practice extends StatelessWidget {
-  const Practice({super.key});
+class Practice0 extends StatelessWidget {
+  const Practice0({super.key});
   final String _titleText = "Practice";
   final String _imageName = "822957";
   final String _imageName2 = "5593976";
@@ -24,13 +24,10 @@ class Practice extends StatelessWidget {
       ]),
       bottomNavigationBar: BottomNavigationBar(items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: "home"),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.accessible_forward_outlined), label: "vınnn")
+        BottomNavigationBarItem(icon: Icon(Icons.accessible_forward_outlined), label: "vınnn")
       ]),
-      floatingActionButton:
-          FloatingActionButton(onPressed: () {}, child: const Icon(Icons.add)),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.miniCenterDocked,
+      floatingActionButton: FloatingActionButton(onPressed: () {}, child: const Icon(Icons.add)),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterDocked,
     );
   }
 }
@@ -83,7 +80,6 @@ class _PngImage2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset("assets/png/$_imageName.png",
-        height: _imageSizes, width: _imageSizes);
+    return Image.asset("assets/png/$_imageName.png", height: _imageSizes, width: _imageSizes);
   }
 }
