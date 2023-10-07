@@ -9,6 +9,7 @@ class MyCollectionsDemo extends StatefulWidget {
 
 class _MyCollectionsDemoState extends State<MyCollectionsDemo> {
   late List<CollectionModel> _items;
+
   @override
   void initState() {
     super.initState();
@@ -64,24 +65,21 @@ class _CategoryWidget extends StatelessWidget {
 }
 
 class CollectionModel {
-  final String imagePath;
-  final String title;
-  final double price;
-
   CollectionModel({required this.imagePath, required this.title, required this.price});
+
+  final String imagePath;
+  final double price;
+  final String title;
 }
 
 class ProjectPadding {
-  final EdgeInsets paddingOnlyTop = const EdgeInsets.only(top: 10);
   final EdgeInsets paddingAll = const EdgeInsets.all(20);
   final EdgeInsets paddingBottom = const EdgeInsets.only(bottom: 40);
   final EdgeInsets paddingHorizontal = const EdgeInsets.symmetric(horizontal: 20);
+  final EdgeInsets paddingOnlyTop = const EdgeInsets.only(top: 10);
 }
 
 class CollectionItems {
-  final imageUrl =
-      "https://upload.wikimedia.org/wikipedia/commons/f/f6/Pixel_DJ_Soft_Skull_%26_Headphones_-_Black_BG%3B_800%25_Pixel%3B_400x400.png";
-  late List<CollectionModel> items;
   CollectionItems() {
     items = [
       CollectionModel(imagePath: imageUrl, title: "Abstracr Art", price: 3.4),
@@ -92,4 +90,9 @@ class CollectionItems {
       CollectionModel(imagePath: imageUrl, title: "Abstracr Art6", price: 3.4),
     ];
   }
+
+  final imageUrl =
+      "https://upload.wikimedia.org/wikipedia/commons/f/f6/Pixel_DJ_Soft_Skull_%26_Headphones_-_Black_BG%3B_800%25_Pixel%3B_400x400.png";
+
+  late List<CollectionModel> items;
 }
