@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/navigate_detail_learn.dart';
+import 'package:flutter_application_1/101/navigate_detail_learn.dart';
 
 class NavigatorLearn extends StatefulWidget {
   const NavigatorLearn({super.key});
