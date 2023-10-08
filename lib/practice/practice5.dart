@@ -8,11 +8,11 @@ class Practice5 extends StatefulWidget {
 }
 
 class _Practice5State extends State<Practice5> {
-  late List<ProductClass> products;
+  late List<ProductModel> _products;
   @override
   void initState() {
     super.initState();
-    products = ProductItems().products;
+    _products = ProductItems().products;
   }
 
   @override
@@ -20,32 +20,41 @@ class _Practice5State extends State<Practice5> {
     return Scaffold(
       appBar: AppBar(),
       body: ListView.builder(
-        itemCount: products.length,
+        itemCount: _products.length,
         itemBuilder: (context, index) {
-          return _ProductCard(product: products[index]);
+          return Padding(
+            padding: ProjectPadding().paddingSymetric,
+            child: _CardWidget(product: _products[index]),
+          );
         },
       ),
     );
   }
 }
 
-class _ProductCard extends StatelessWidget {
-  const _ProductCard({
-    required this.product,
-  });
+class ProjectPadding {
+  final EdgeInsets paddingSymetric = const EdgeInsets.symmetric(horizontal: 30, vertical: 10);
+}
 
-  final ProductClass product;
+class _CardWidget extends StatelessWidget {
+  const _CardWidget({
+    required ProductModel product,
+  }) : _product = product;
+
+  final ProductModel _product;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100,
+      height: 200,
       child: Card(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(product.name),
-            Text(product.description),
-            Text(product.age.toString()),
+            Text(_product.name),
+            Text(_product.description),
+            Text(_product.price.toString()),
+            Text(_product.comment),
           ],
         ),
       ),
@@ -53,25 +62,28 @@ class _ProductCard extends StatelessWidget {
   }
 }
 
-class ProductClass {
+class ProductModel {
   final String name;
   final String description;
-  final int age;
-  final bool gender;
+  final int price;
+  final String comment;
 
-  ProductClass({required this.name, required this.description, required this.age, required this.gender});
+  ProductModel({required this.name, required this.description, required this.price, required this.comment});
 }
 
 class ProductItems {
-  late List<ProductClass> products;
+  late List<ProductModel> products;
 
   ProductItems() {
     products = [
-      ProductClass(name: "name", description: "description", age: 23, gender: true),
-      ProductClass(name: "name", description: "description", age: 23, gender: true),
-      ProductClass(name: "name", description: "description", age: 23, gender: true),
-      ProductClass(name: "name", description: "description", age: 23, gender: true),
-      ProductClass(name: "name", description: "description", age: 23, gender: true),
+      ProductModel(name: "name", description: "description", price: 13, comment: "comment"),
+      ProductModel(name: "name", description: "description", price: 13, comment: "comment"),
+      ProductModel(name: "name", description: "description", price: 13, comment: "comment"),
+      ProductModel(name: "name", description: "description", price: 13, comment: "comment"),
+      ProductModel(name: "name", description: "description", price: 13, comment: "comment"),
+      ProductModel(name: "name", description: "description", price: 13, comment: "comment"),
+      ProductModel(name: "name", description: "description", price: 13, comment: "comment"),
+      ProductModel(name: "name", description: "description", price: 13, comment: "comment"),
     ];
   }
 }
