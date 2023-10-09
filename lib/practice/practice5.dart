@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Practice5 extends StatefulWidget {
-  const Practice5({super.key});
+  const Practice5({super.key, this.isOkey = false});
+  final bool isOkey;
 
   @override
   State<Practice5> createState() => _Practice5State();
@@ -28,6 +29,9 @@ class _Practice5State extends State<Practice5> {
           );
         },
       ),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        Navigator.of(context).pop(widget.isOkey ? false : true);
+      }),
     );
   }
 }
