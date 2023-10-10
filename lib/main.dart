@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/202/model_learn_view.dart';
+import 'package:flutter_application_1/202/service/service_learn_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,12 +30,12 @@ class _MyAppState extends State<MyApp> {
             //floatingLabelStyle: TextStyle(color: Colors.black)
           ),
           listTileTheme: const ListTileThemeData(contentPadding: EdgeInsets.zero),
-          progressIndicatorTheme: const ProgressIndicatorThemeData(color: Colors.deepPurple),
+          // progressIndicatorTheme: const ProgressIndicatorThemeData(color: Colors.deepPurple),
           // card theme burada verilebilir
           cardTheme: CardTheme(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3))),
           // colorScheme: const ColorScheme.dark(),
           appBarTheme: const AppBarTheme(centerTitle: true, backgroundColor: Colors.transparent, elevation: 0)),
-      home: const ModelLearn(),
+      home: const ServiceLearn(),
     );
   }
 }
