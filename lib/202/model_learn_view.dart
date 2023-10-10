@@ -13,9 +13,9 @@ class _ModelLearnState extends State<ModelLearn> {
   final user2 = PostModel2(1, 1, "title", "body2");
   final user3 = PostModel3(1, 2, "title3", "body3");
   final user4 = PostModel4(userId: 1, id: 2, title: "title4", body: "body4");
-  final user5 = PostModel5(userId: 1, id: 2, title: "title5", body: "body5");
-  final user6 = PostModel6(userId: 1, id: 2, title: "title6", body: "body6");
-  final user7 = PostModel7(id: 1, body: "body7", title: "asdas");
+  // final user5 = PostModel5(userId: 1, id: 2, title: "title5", body: "body5");
+  // final user6 = PostModel6(userId: 1, id: 2, title: "title6", body: "body6");
+  // final user7 = PostModel7(id: 1, body: "body7", title: "asdas");
   var user8 = PostModel8(userId: 0, id: 0);
   @override
   Widget build(BuildContext context) {
@@ -31,8 +31,8 @@ class _ModelLearnState extends State<ModelLearn> {
           Text(user2.body),
           Text(user3.body),
           Text(user4.body),
-          Text(user5.userId.toString()),
-          Text(user7.title),
+          // Text(user5.userId.toString()),
+          // Text(user7.title),
           Text(user8.body ?? "NO DATA")
         ],
       ),
