@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/202/tab_learn.dart';
+import 'package:flutter_application_1/202/model_learn_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,7 +35,7 @@ class _MyAppState extends State<MyApp> {
           cardTheme: CardTheme(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3))),
           // colorScheme: const ColorScheme.dark(),
           appBarTheme: const AppBarTheme(centerTitle: true, backgroundColor: Colors.transparent, elevation: 0)),
-      home: const TabLearn(),
+      home: const ModelLearn(),
     );
   }
 }
