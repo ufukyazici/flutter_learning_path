@@ -19,7 +19,12 @@ class _PackageLearnState extends State<PackageLearn> {
           highlightColor: Colors.white,
           child: ListView.builder(
             itemBuilder: (context, index) {
-              return const ListTile(title: Text("SA"), subtitle: LoadingBar());
+              return ListTile(
+                  title: Text(
+                    "SA",
+                    style: Theme.of(context).textTheme.labelMedium,
+                  ),
+                  subtitle: const LoadingBar());
             },
           )),
     );
