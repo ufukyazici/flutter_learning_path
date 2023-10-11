@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/202/theme/light_theme.dart';
-import 'package:flutter_application_1/202/widget_size_enum_learn_view.dart';
+import 'package:flutter_application_1/jsonphalbums/album_theme.dart';
+import 'package:flutter_application_1/jsonphalbums/login_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +19,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // appbarın her sayfada aynı olmasını istediğimiz özellikleri copywith ile yapıyoruz.
-      theme: LightTheme().theme,
+      theme: AlbumTheme().theme,
       // ThemeData.dark().copyWith(
       //     //projedeki tüm titleMediumların rengini düzenleme
       //     // textTheme: const TextTheme(titleMedium: TextStyle(color: Colors.white)),
@@ -37,7 +37,7 @@ class _MyAppState extends State<MyApp> {
       //     cardTheme: CardTheme(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3))),
       //     // colorScheme: const ColorScheme.dark(),
       //     appBarTheme: const AppBarTheme(centerTitle: true, backgroundColor: Colors.transparent, elevation: 0)),
-      home: const WidgetSizeEnumLearnView(),
+      home: const LoginView(),
     );
   }
 }
