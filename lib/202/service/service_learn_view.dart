@@ -14,7 +14,7 @@ class ServiceLearn extends StatefulWidget {
 class _ServiceLearnState extends State<ServiceLearn> {
   List<PostModel>? _items;
   bool _isLoading = false;
-  late final _dio;
+  late final Dio _dio;
   final _baseUrl = "https://jsonplaceholder.typicode.com/";
   @override
   void initState() {
