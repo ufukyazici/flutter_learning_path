@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-enum SharedKeys { counter }
+enum SharedKeys { counter, users }
 
 class SharedManager {
   SharedPreferences? preferences;
@@ -13,6 +13,14 @@ class SharedManager {
 
   Future<void> saveString(SharedKeys key, String value) async {
     await preferences?.setString(key.name, value);
+  }
+
+  Future<void> saveStringItems(SharedKeys key, List<String> value) async {
+    await preferences?.setStringList(key.name, value);
+  }
+
+  List<String>? getStringItems(SharedKeys key) {
+    return preferences?.getStringList(key.name);
   }
 
   String? getString(SharedKeys key) {

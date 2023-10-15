@@ -8,16 +8,17 @@ class SharedLearn extends StatefulWidget {
   State<SharedLearn> createState() => _SharedLearnState();
 }
 
-class _SharedLearnState extends State<SharedLearn> {
+class _SharedLearnState extends LoadingStateful {
   int _currentValue = 0;
-  bool _isLoading = false;
   late final SharedManager _manager;
+  late final List<User> users;
 
   @override
   void initState() {
     super.initState();
     _manager = SharedManager();
     _initialize();
+    users = Users().users;
   }
 
   Future<void> _initialize() async {
@@ -27,12 +28,6 @@ class _SharedLearnState extends State<SharedLearn> {
 
   Future<void> getCaches() async {
     _onChangeValue(_manager.getString(SharedKeys.counter) ?? "");
-  }
-
-  void _changeLoading() {
-    setState(() {
-      _isLoading = !_isLoading;
-    });
   }
 
   void _onChangeValue(String value) {
@@ -49,18 +44,25 @@ class _SharedLearnState extends State<SharedLearn> {
     return Scaffold(
       appBar: AppBar(
         title: Text(_currentValue.toString()),
-        actions: [_isLoading ? const CircularProgressIndicator.adaptive() : const SizedBox()],
+        actions: [isLoading ? const CircularProgressIndicator.adaptive() : const SizedBox()],
       ),
-      body: TextField(
-        onChanged: (value) {
-          _onChangeValue(value);
-        },
+      body: Column(
+        children: [
+          TextField(
+            onChanged: (value) {
+              _onChangeValue(value);
+            },
+          ),
+        ],
       ),
       floatingActionButton: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           _saveValueButton(),
           _removeValueButton(),
+          FloatingActionButton(onPressed: () {
+            // _manager.saveStringItems(SharedKeys.users);
+          })
         ],
       ),
     );
@@ -69,9 +71,9 @@ class _SharedLearnState extends State<SharedLearn> {
   FloatingActionButton _saveValueButton() {
     return FloatingActionButton(
       onPressed: () async {
-        _changeLoading();
+        changeLoading();
         await _manager.saveString(SharedKeys.counter, _currentValue.toString());
-        _changeLoading();
+        changeLoading();
       },
       child: const Icon(Icons.save),
     );
@@ -80,11 +82,40 @@ class _SharedLearnState extends State<SharedLearn> {
   FloatingActionButton _removeValueButton() {
     return FloatingActionButton(
       onPressed: () async {
-        _changeLoading();
+        changeLoading();
         await _manager.removeItem(SharedKeys.counter);
-        _changeLoading();
+        changeLoading();
       },
       child: const Icon(Icons.delete),
     );
+  }
+}
+
+abstract class LoadingStateful extends State<SharedLearn> {
+  bool isLoading = false;
+
+  void changeLoading() {
+    setState(() {
+      isLoading = !isLoading;
+    });
+  }
+}
+
+class User {
+  final String name;
+  final String description;
+  final String url;
+
+  User({required this.name, required this.description, required this.url});
+}
+
+class Users {
+  late final List<User> users;
+  Users() {
+    users = [
+      User(name: "xd", description: "description", url: "xd.com"),
+      User(name: "xd1", description: "description1", url: "xd1.com"),
+      User(name: "xd2", description: "description2", url: "xd2.com")
+    ];
   }
 }
