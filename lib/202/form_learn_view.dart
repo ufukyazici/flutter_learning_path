@@ -37,9 +37,7 @@ class _FormLearnViewState extends State<FormLearnView> {
             ),
             ElevatedButton(
                 onPressed: () {
-                  if (_key.currentState?.validate() ?? false) {
-                    print('ok');
-                  }
+                  if (_key.currentState?.validate() ?? false) {}
                 },
                 child: const Text("save"))
           ],
