@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_application_1/202/cache/shared_manager.dart';
 
 class SharedLearn extends StatefulWidget {
   const SharedLearn({super.key});
@@ -11,17 +11,22 @@ class SharedLearn extends StatefulWidget {
 class _SharedLearnState extends State<SharedLearn> {
   int _currentValue = 0;
   bool _isLoading = false;
+  late final SharedManager _manager;
 
   @override
   void initState() {
     super.initState();
+    _manager = SharedManager();
+    _initialize();
+  }
+
+  Future<void> _initialize() async {
+    await _manager.init();
     getCaches();
   }
 
   Future<void> getCaches() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final int? counter = prefs.getInt('counter');
-    _onChangeValue(counter.toString());
+    _onChangeValue(_manager.getString(SharedKeys.counter) ?? "");
   }
 
   void _changeLoading() {
@@ -65,8 +70,7 @@ class _SharedLearnState extends State<SharedLearn> {
     return FloatingActionButton(
       onPressed: () async {
         _changeLoading();
-        final SharedPreferences prefs = await SharedPreferences.getInstance();
-        await prefs.setInt('counter', _currentValue);
+        await _manager.saveString(SharedKeys.counter, _currentValue.toString());
         _changeLoading();
       },
       child: const Icon(Icons.save),
@@ -77,8 +81,7 @@ class _SharedLearnState extends State<SharedLearn> {
     return FloatingActionButton(
       onPressed: () async {
         _changeLoading();
-        final SharedPreferences prefs = await SharedPreferences.getInstance();
-        await prefs.remove('counter');
+        await _manager.removeItem(SharedKeys.counter);
         _changeLoading();
       },
       child: const Icon(Icons.delete),
