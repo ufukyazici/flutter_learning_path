@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/202/cache/shared_learn_cache.dart';
 import 'package:flutter_application_1/202/cache/shared_manager.dart';
 import 'package:flutter_application_1/202/cache/user_cache/user_cache_manager.dart';
+import 'package:flutter_application_1/202/cache/user_model.dart';
 
 class SharedListCache extends StatefulWidget {
   const SharedListCache({super.key});
@@ -10,13 +11,17 @@ class SharedListCache extends StatefulWidget {
   State<SharedListCache> createState() => _SharedListCacheState();
 }
 
-class _SharedListCacheState extends State<SharedListCache> {
+class _SharedListCacheState extends LoadingStateful<SharedListCache> {
   late final UserCacheManager userCacheManager;
+  final List<User> _users = Users().users;
 
   @override
   void initState() {
     super.initState();
-    userCacheManager = UserCacheManager(sharedManager: SharedManager());
+    final SharedManager manager = SharedManager();
+    manager.init().whenComplete(() {
+      userCacheManager = UserCacheManager(sharedManager: SharedManager());
+    });
   }
 
   @override
@@ -24,7 +29,13 @@ class _SharedListCacheState extends State<SharedListCache> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.save)),
+          IconButton(
+              onPressed: () {
+                changeLoading();
+                userCacheManager.saveItems(_users);
+                changeLoading();
+              },
+              icon: const Icon(Icons.save)),
           IconButton(onPressed: () {}, icon: const Icon(Icons.delete)),
         ],
       ),
@@ -45,9 +56,9 @@ class _UserListView extends StatelessWidget {
       itemBuilder: (context, index) {
         return Card(
           child: ListTile(
-            title: Text(users[index].name),
-            subtitle: Text(users[index].description),
-            trailing: Text(users[index].url,
+            title: Text(users[index].name ?? ""),
+            subtitle: Text(users[index].description ?? ""),
+            trailing: Text(users[index].url ?? "",
                 style: Theme.of(context).textTheme.labelLarge?.copyWith(decoration: TextDecoration.underline)),
           ),
         );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/202/cache/shared_manager.dart';
+import 'package:flutter_application_1/202/cache/user_model.dart';
 
 class SharedLearn extends StatefulWidget {
   const SharedLearn({super.key});
@@ -8,7 +9,7 @@ class SharedLearn extends StatefulWidget {
   State<SharedLearn> createState() => _SharedLearnState();
 }
 
-class _SharedLearnState extends LoadingStateful {
+class _SharedLearnState extends LoadingStateful<SharedLearn> {
   int _currentValue = 0;
   late final SharedManager _manager;
   late final List<User> users;
@@ -91,7 +92,7 @@ class _SharedLearnState extends LoadingStateful {
   }
 }
 
-abstract class LoadingStateful extends State<SharedLearn> {
+abstract class LoadingStateful<T extends StatefulWidget> extends State<T> {
   bool isLoading = false;
 
   void changeLoading() {
@@ -99,14 +100,6 @@ abstract class LoadingStateful extends State<SharedLearn> {
       isLoading = !isLoading;
     });
   }
-}
-
-class User {
-  final String name;
-  final String description;
-  final String url;
-
-  User({required this.name, required this.description, required this.url});
 }
 
 class Users {
