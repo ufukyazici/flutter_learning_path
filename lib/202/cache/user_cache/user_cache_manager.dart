@@ -14,11 +14,15 @@ class UserCacheManager {
   }
 
   List<User>? getItems() {
+    // Compute
     final itemsString = sharedManager.getStringItems(SharedKeys.users);
     if (itemsString?.isNotEmpty ?? false) {
-      return itemsString!.map((e) {
-        final jsonObject = jsonDecode(e);
-        return User(name: "name", description: "description", url: "url");
+      return itemsString!.map((element) {
+        final json = jsonDecode(element);
+        if (json is Map<String, dynamic>) {
+          return User.fromJson(json);
+        }
+        return User(description: "", name: "", url: "");
       }).toList();
     }
     return null;

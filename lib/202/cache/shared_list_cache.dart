@@ -13,15 +13,21 @@ class SharedListCache extends StatefulWidget {
 
 class _SharedListCacheState extends LoadingStateful<SharedListCache> {
   late final UserCacheManager userCacheManager;
-  final List<User> _users = Users().users;
+  List<User> _users = [];
 
   @override
   void initState() {
     super.initState();
+    initializeAndSave();
+  }
+
+  Future<void> initializeAndSave() async {
+    changeLoading();
     final SharedManager manager = SharedManager();
-    manager.init().whenComplete(() {
-      userCacheManager = UserCacheManager(sharedManager: SharedManager());
-    });
+    await manager.init();
+    userCacheManager = UserCacheManager(sharedManager: manager);
+    _users = userCacheManager.getItems() ?? [];
+    changeLoading();
   }
 
   @override
