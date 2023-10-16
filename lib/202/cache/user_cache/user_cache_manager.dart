@@ -9,16 +9,15 @@ class UserCacheManager {
   UserCacheManager({required this.sharedManager});
 
   Future<void> saveItems(List<User> items) async {
-    final itemsList = items.map((e) => jsonEncode(e.toJson())).toList();
-    await sharedManager.saveStringItems(SharedKeys.users, itemsList);
+    final items0 = items.map((element) => jsonEncode(element.toJson())).toList();
+    await sharedManager.saveStringItems(SharedKeys.users, items0);
   }
 
   List<User>? getItems() {
-    // Compute
     final itemsString = sharedManager.getStringItems(SharedKeys.users);
     if (itemsString?.isNotEmpty ?? false) {
-      return itemsString!.map((element) {
-        final json = jsonDecode(element);
+      return itemsString!.map((e) {
+        final json = jsonDecode(e);
         if (json is Map<String, dynamic>) {
           return User.fromJson(json);
         }

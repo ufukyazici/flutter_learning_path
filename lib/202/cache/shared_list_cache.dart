@@ -24,6 +24,7 @@ class _SharedListCacheState extends LoadingStateful<SharedListCache> {
   Future<void> initializeAndSave() async {
     changeLoading();
     final SharedManager manager = SharedManager();
+
     await manager.init();
     userCacheManager = UserCacheManager(sharedManager: manager);
     _users = userCacheManager.getItems() ?? [];
@@ -45,15 +46,15 @@ class _SharedListCacheState extends LoadingStateful<SharedListCache> {
           IconButton(onPressed: () {}, icon: const Icon(Icons.delete)),
         ],
       ),
-      body: _UserListView(),
+      body: _UserListView(_users),
     );
   }
 }
 
 class _UserListView extends StatelessWidget {
-  _UserListView();
+  const _UserListView(this.users);
 
-  final List<User> users = Users().users;
+  final List<User> users;
 
   @override
   Widget build(BuildContext context) {
