@@ -19,7 +19,7 @@ class _AlertLearnState extends State<AlertLearn> {
             context: context,
             barrierDismissible: false,
             builder: (context) {
-              return const _UpdateDialog();
+              return UpdateDialog(context: context);
             },
           );
           if (result == true) {
@@ -59,24 +59,27 @@ class _UpdateDialog extends StatelessWidget {
   }
 }
 
+class Keys {
+  static const versionUpdate = 'Version update';
+}
+
 class UpdateDialog extends AlertDialog {
-   UpdateDialog({super.key,required BuildContext context})
-  :super(
-    key: key,
-    title: const Text("Version update"),
-      actions: [
-        ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pop(true);
-            },
-            child: const Text("UPDATE")),
-        TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: const Text('Close'))
-      ],
-    );
-  )
-    
+  UpdateDialog({Key? key, required BuildContext context})
+      : super(
+          key: key,
+          title: const Text(Keys.versionUpdate),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context, true);
+              },
+              child: const Text('Update2'),
+            ),
+            TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('Close'))
+          ],
+        );
 }
