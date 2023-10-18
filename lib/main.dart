@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/202/alert_learn.dart';
-import 'package:flutter_application_1/jsonphalbums/album_theme.dart';
+import 'package:flutter_application_1/accounts_storage/accounts_page.dart';
+import 'package:flutter_application_1/accounts_storage/accounts_storage_theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +19,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // appbarın her sayfada aynı olmasını istediğimiz özellikleri copywith ile yapıyoruz.
-      theme: AlbumTheme().theme,
+      theme: AccountsTheme().theme,
       // ThemeData.dark().copyWith(
       //     //projedeki tüm titleMediumların rengini düzenleme
       //     // textTheme: const TextTheme(titleMedium: TextStyle(color: Colors.white)),
@@ -37,7 +37,7 @@ class _MyAppState extends State<MyApp> {
       //     cardTheme: CardTheme(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3))),
       //     // colorScheme: const ColorScheme.dark(),
       //     appBarTheme: const AppBarTheme(centerTitle: true, backgroundColor: Colors.transparent, elevation: 0)),
-      home: const AlertLearn(),
+      home: const AccountsPage(),
     );
   }
 }
