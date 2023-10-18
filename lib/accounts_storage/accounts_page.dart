@@ -17,7 +17,21 @@ class _AccountsPageState extends State<AccountsPage> {
         mail: "haydar123@gmail.com",
         mailPassword: "haydar123",
         rank: "ascendant1",
-        dob: "01.01.1999")
+        dob: "01.01.1999"),
+    AccountModel(
+        username: "haydar123",
+        password: "haydar123",
+        mail: "haydar123@gmail.com",
+        mailPassword: "haydar123",
+        rank: "ascendant1",
+        dob: "01.01.1999"),
+    AccountModel(
+        username: "haydar123",
+        password: "haydar123",
+        mail: "haydar123@gmail.com",
+        mailPassword: "haydar123",
+        rank: "ascendant1",
+        dob: "01.01.1999"),
   ];
   @override
   Widget build(BuildContext context) {
@@ -43,14 +57,18 @@ class _AccountsPageState extends State<AccountsPage> {
             child: ListTile(
               leading: Image.asset("assets/png/${accounts[index].rank}.png"),
               title: Text("${accounts[index].username}"),
-              subtitle: Text("${accounts[index].password}"),
-              trailing: IconButton(
-                  onPressed: () {
-                    Clipboard.setData(ClipboardData(
-                        text:
-                            "Username : ${accounts[index].username} | Password : ${accounts[index].password}} | Mail : ${accounts[index].mail} | Mail Password : ${accounts[index].mailPassword} | Rank : ${accounts[index].rank} | Date of Birth : ${accounts[index].dob}"));
-                  },
-                  icon: const Icon(Icons.copy)),
+              subtitle: Text("${accounts[index].mail}"),
+              trailing: Wrap(children: [
+                IconButton(onPressed: () {}, icon: const Icon(Icons.edit_outlined)),
+                IconButton(
+                    onPressed: () {
+                      Clipboard.setData(ClipboardData(
+                          text:
+                              "Username : ${accounts[index].username} | Password : ${accounts[index].password}} | Mail : ${accounts[index].mail} | Mail Password : ${accounts[index].mailPassword} | Rank : ${accounts[index].rank} | Date of Birth : ${accounts[index].dob}"));
+                    },
+                    icon: const Icon(Icons.copy_outlined)),
+                IconButton(onPressed: () {}, icon: const Icon(Icons.delete_outlined))
+              ]),
             ),
           );
         },

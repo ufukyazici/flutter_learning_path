@@ -58,7 +58,6 @@ class _SheetExample extends StatefulWidget {
 }
 
 class _SheetExampleState extends State<_SheetExample> {
-  Color _backgroundColor = Colors.white;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -100,9 +99,7 @@ class _SheetExampleState extends State<_SheetExample> {
             ),
             ElevatedButton(
                 onPressed: () {
-                  setState(() {
-                    _backgroundColor = Colors.yellow;
-                  });
+                  setState(() {});
                   Navigator.of(context).pop<bool>(true);
                 },
                 child: const Text("send"))
