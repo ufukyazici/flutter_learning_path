@@ -103,6 +103,8 @@ class _AccountsPageState extends State<AccountsPage> {
                               value: "Immortal-2", child: Text("Immortal-2")),
                           DropdownMenuItem(
                               value: "Immortal-3", child: Text("Immortal-3")),
+                          DropdownMenuItem(
+                              value: "Radiant", child: Text("Radiant")),
                         ],
                         onChanged: (value) {
                           setState(() {
