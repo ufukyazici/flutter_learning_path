@@ -125,7 +125,14 @@ class _AccountsPageState extends State<AccountsPage> {
                               inspect(accounts);
                               accountCacheManager.saveAccounts(accounts);
                               // accountAppend.clear();
-                              setState(() {});
+                              setState(() {
+                                _usernameController.text = "";
+                                _passwordController.text = "";
+                                _mailController.text = "";
+                                _mailPasswordController.text = "";
+                                _dobController.text = "";
+                                _rank = "";
+                              });
                               Navigator.of(context).pop();
                             },
                             icon: const Icon(Icons.save_outlined),
@@ -171,7 +178,11 @@ class _AccountsPageState extends State<AccountsPage> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          accounts.removeAt(index);
+                          accountCacheManager.saveAccounts(accounts);
+                          setState(() {});
+                        },
                         icon: const Icon(Icons.delete_outlined)),
                   )
                 ]),
