@@ -23,7 +23,7 @@ class _ImageZoomLearnState extends State<ImageZoomLearn> {
                   child: Image.asset(
                     "assets/png/applelogo.png",
                     fit: BoxFit.fitHeight,
-                    height: 200,
+                    height: 300,
                   ),
                 ),
               );
