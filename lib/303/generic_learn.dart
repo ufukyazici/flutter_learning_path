@@ -26,6 +26,13 @@ class UserManagement<T extends AdminUser> {
   }
 }
 
+class UYModel<T> {
+  final String name = 'uy';
+  final List<T> items;
+
+  UYModel({required this.items});
+}
+
 class GenericUser {
   final String name;
   final int id;
