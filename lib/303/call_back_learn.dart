@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/product/widget/callback_dropdown.dart';
 
 class CallBackLearn extends StatefulWidget {
   const CallBackLearn({super.key});
@@ -9,26 +10,17 @@ class CallBackLearn extends StatefulWidget {
 }
 
 class _CallBackLearnState extends State<CallBackLearn> {
-  CallbackUser? _user;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
       body: Column(
         children: [
-          DropdownButton<CallbackUser>(
-              value: _user,
-              items: CallbackUser.dummyUsers().map((e) {
-                return DropdownMenuItem(
-                  value: e,
-                  child: Text(e.name),
-                );
-              }).toList(),
-              onChanged: (CallbackUser? callbackUser) {
-                setState(() {
-                  _user = callbackUser;
-                });
-              })
+          CallBackDropdown(
+            onUserSelected: (user) {
+              print(user.name);
+            },
+          )
         ],
       ),
     );
