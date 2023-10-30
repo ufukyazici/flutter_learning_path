@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/product/widget/button/answer_button.dart';
+import 'package:flutter_application_1/product/widget/button/loading_button.dart';
 import 'package:flutter_application_1/product/widget/callback_dropdown.dart';
 
 class CallBackLearn extends StatefulWidget {
@@ -19,6 +21,17 @@ class _CallBackLearnState extends State<CallBackLearn> {
           CallBackDropdown(
             onUserSelected: (user) {
               print(user.name);
+            },
+          ),
+          AnswerButton(
+            onNumber: (number) {
+              return number >= 5;
+            },
+          ),
+          LoadingButton(
+            title: "Save",
+            onPressed: () {
+              return Future.delayed(const Duration(seconds: 2));
             },
           )
         ],
