@@ -10,6 +10,7 @@ class _PartofAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       title: const Text('a'),
       actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.abc_rounded))],
+      centerTitle: true,
     );
   }
 
