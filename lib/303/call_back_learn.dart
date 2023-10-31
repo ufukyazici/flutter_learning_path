@@ -30,8 +30,8 @@ class _CallBackLearnState extends State<CallBackLearn> {
           ),
           LoadingButton(
             title: "Save",
-            onPressed: () {
-              return Future.delayed(const Duration(seconds: 2));
+            onPressed: () async {
+              await Future.delayed(const Duration(seconds: 2));
             },
           )
         ],
