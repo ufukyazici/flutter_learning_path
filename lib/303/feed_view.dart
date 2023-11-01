@@ -47,7 +47,7 @@ class _FeedFutureBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<PostModel>?>(
+    return FutureBuilder(
       future: _list,
       builder: (BuildContext context, AsyncSnapshot<List<PostModel>?> snapshot) {
         switch (snapshot.connectionState) {
@@ -64,7 +64,8 @@ class _FeedFutureBuilder extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Card(
                     child: ListTile(
-                      title: Text(snapshot.data?[index].body ?? ""),
+                      title: Text(snapshot.data?[index].title ?? ""),
+                      subtitle: Text(snapshot.data?[index].body ?? ""),
                     ),
                   );
                 },
