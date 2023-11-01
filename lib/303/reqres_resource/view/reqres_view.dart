@@ -16,7 +16,12 @@ class _ReqResViewState extends ReqresViewModel {
       body: ListView.builder(
         itemCount: resources.length,
         itemBuilder: (BuildContext context, int index) {
-          return Text(resources[index].name ?? '');
+          return Card(
+            child: ListTile(
+              title: Text(resources[index].name ?? ""),
+              subtitle: Text(resources[index].year.toString()),
+            ),
+          );
         },
       ),
     );
