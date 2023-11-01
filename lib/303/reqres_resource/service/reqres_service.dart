@@ -5,19 +5,19 @@ abstract class IResourceService {
   IResourceService({required this.dio});
 
   final Dio dio;
-  Future<List<ResourceModel>?> fetchResourceItems();
+  Future<ResourceModel?> fetchResourceItems();
 }
 
 class ResourceService extends IResourceService {
   ResourceService({required super.dio});
 
   @override
-  Future<List<ResourceModel>?> fetchResourceItems() async {
-    final response = await dio.get(_ReqResPath.unknown.name);
+  Future<ResourceModel?> fetchResourceItems() async {
+    final response = await dio.get('/${_ReqResPath.unknown.name}');
     if (response.statusCode == 200) {
       final jsonBody = response.data;
-      if (jsonBody is List) {
-        jsonBody.map((e) => ResourceModel.fromJson(e)).toList();
+      if (jsonBody is Map<String, dynamic>) {
+        return ResourceModel.fromJson(jsonBody);
       }
     }
     return null;

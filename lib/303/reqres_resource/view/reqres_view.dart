@@ -13,6 +13,12 @@ class _ReqResViewState extends ReqresViewModel {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
+      body: ListView.builder(
+        itemCount: resources.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Text(resources[index].name ?? '');
+        },
+      ),
     );
   }
 }
