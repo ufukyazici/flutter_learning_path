@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/303/reqres_resource/viewModel/reqres_view_model.dart';
+import 'package:flutter_application_1/product/extension/string_extension.dart';
 
 class ReqResView extends StatefulWidget {
   const ReqResView({super.key});
@@ -17,6 +18,7 @@ class _ReqResViewState extends ReqresViewModel {
         itemCount: resources.length,
         itemBuilder: (BuildContext context, int index) {
           return Card(
+            color: Color(resources[index].color?.colorValue ?? 0),
             child: ListTile(
               title: Text(resources[index].name ?? ""),
               subtitle: Text(resources[index].year.toString()),
