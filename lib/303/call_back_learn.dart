@@ -1,8 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/product/global/resource_context.dart';
 import 'package:flutter_application_1/product/widget/button/answer_button.dart';
 import 'package:flutter_application_1/product/widget/button/loading_button.dart';
 import 'package:flutter_application_1/product/widget/callback_dropdown.dart';
+import 'package:provider/provider.dart';
 
 class CallBackLearn extends StatefulWidget {
   const CallBackLearn({super.key});
@@ -15,7 +17,16 @@ class _CallBackLearnState extends State<CallBackLearn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () {
+                context.read<ResourceContext>().clear();
+              },
+              icon: const Icon(Icons.remove))
+        ],
+        title: Text(context.read<ResourceContext>().model?.data?.length.toString() ?? ""),
+      ),
       body: Column(
         children: [
           CallBackDropdown(

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/303/call_back_learn.dart';
 import 'package:flutter_application_1/303/reqres_resource/model/resource_model.dart';
 import 'package:flutter_application_1/303/reqres_resource/service/reqres_service.dart';
 import 'package:flutter_application_1/303/reqres_resource/viewModel/reqres_provider.dart';
 import 'package:flutter_application_1/product/extension/string_extension.dart';
+import 'package:flutter_application_1/product/global/resource_context.dart';
 import 'package:flutter_application_1/product/global/theme_notifier.dart';
 import 'package:flutter_application_1/product/service/projectDio.dart';
 import 'package:provider/provider.dart';
@@ -23,6 +25,16 @@ class _ReqResViewState extends State<ReqResView> with ProjectDioMixin {
       builder: (context, child) {
         return Scaffold(
           appBar: AppBar(
+            actions: [
+              IconButton(
+                  onPressed: () {
+                    context.read<ReqresProvider>().saveToLocale(context.read<ResourceContext>());
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                      return const CallBackLearn();
+                    }));
+                  },
+                  icon: const Icon(Icons.save))
+            ],
             title: context.watch<ReqresProvider>().isLoading ? const CircularProgressIndicator() : null,
           ),
           floatingActionButton: FloatingActionButton(
