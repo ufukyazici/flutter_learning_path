@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/303/reqres_resource/view/reqres_view.dart';
-import 'package:flutter_application_1/accounts_storage/accounts_storage_theme.dart';
+import 'package:flutter_application_1/product/global/resource_context.dart';
+import 'package:flutter_application_1/product/global/theme_notifier.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [
+      Provider(create: (_) => ResourceContext()),
+      ChangeNotifierProvider<ThemeNotifier>(
+        create: (context) => ThemeNotifier(),
+      )
+    ],
+    builder: (context, child) => const MyApp(),
+  ));
 }
 
 class MyApp extends StatefulWidget {
@@ -19,7 +29,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // appbarın her sayfada aynı olmasını istediğimiz özellikleri copywith ile yapıyoruz.
-      theme: AccountsTheme().theme,
+      theme: context.watch<ThemeNotifier>().currentTheme,
       // ThemeData.dark().copyWith(
       //     //projedeki tüm titleMediumların rengini düzenleme
       //     // textTheme: const TextTheme(titleMedium: TextStyle(color: Colors.white)),
