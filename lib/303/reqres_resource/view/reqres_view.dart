@@ -25,30 +25,13 @@ class _ReqResViewState extends State<ReqResView> with ProjectDioMixin {
       builder: (context, child) {
         return Scaffold(
           appBar: AppBar(
-            actions: [
-              IconButton(
-                  onPressed: () {
-                    context.read<ReqresProvider>().saveToLocale(context.read<ResourceContext>());
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                      return const CallBackLearn();
-                    }));
-                  },
-                  icon: const Icon(Icons.save))
-            ],
+            actions: const [_SaveResourcesButton()],
             title: context.watch<ReqresProvider>().isLoading ? const CircularProgressIndicator() : null,
           ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              context.read<ThemeNotifier>().changeTheme();
-            },
-          ),
+          floatingActionButton: const _ChangeThemeButton(),
           body: Column(
             children: [
-              Selector<ReqresProvider, bool>(builder: (context, value, child) {
-                return value ? const Placeholder() : const Text("data");
-              }, selector: (context, provider) {
-                return provider.isLoading;
-              }),
+              const _TempPlaceHolder(),
               Expanded(child: _resourceListView(context.watch<ReqresProvider>().resources)),
             ],
           ),
@@ -70,5 +53,47 @@ class _ReqResViewState extends State<ReqResView> with ProjectDioMixin {
         );
       },
     );
+  }
+}
+
+class _ChangeThemeButton extends StatelessWidget {
+  const _ChangeThemeButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: () {
+        context.read<ThemeNotifier>().changeTheme();
+      },
+    );
+  }
+}
+
+class _SaveResourcesButton extends StatelessWidget {
+  const _SaveResourcesButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+        onPressed: () {
+          context.read<ReqresProvider>().saveToLocale(context.read<ResourceContext>());
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+            return const CallBackLearn();
+          }));
+        },
+        icon: const Icon(Icons.save));
+  }
+}
+
+class _TempPlaceHolder extends StatelessWidget {
+  const _TempPlaceHolder();
+
+  @override
+  Widget build(BuildContext context) {
+    return Selector<ReqresProvider, bool>(builder: (context, value, child) {
+      return value ? const Placeholder() : const Text("data");
+    }, selector: (context, provider) {
+      return provider.isLoading;
+    });
   }
 }
