@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/303/reqres_resource/view/reqres_view.dart';
+import 'package:flutter_application_1/303/lottie_learn.dart';
 import 'package:flutter_application_1/product/global/resource_context.dart';
 import 'package:flutter_application_1/product/global/theme_notifier.dart';
 import 'package:provider/provider.dart';
@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
       //     cardTheme: CardTheme(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3))),
       //     // colorScheme: const ColorScheme.dark(),
       //     appBarTheme: const AppBarTheme(centerTitle: true, backgroundColor: Colors.transparent, elevation: 0)),
-      home: const ReqResView(),
+      home: const LottieLearn(),
     );
   }
 }
