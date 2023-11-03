@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/product/constant/duration_items.dart';
+import 'package:flutter_application_1/product/constant/lottie_items.dart';
+import 'package:flutter_application_1/product/global/theme_notifier.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 
 class LottieLearn extends StatefulWidget {
   const LottieLearn({super.key});
@@ -8,12 +12,35 @@ class LottieLearn extends StatefulWidget {
   State<LottieLearn> createState() => _LottieLearnState();
 }
 
-class _LottieLearnState extends State<LottieLearn> {
+class _LottieLearnState extends State<LottieLearn> with TickerProviderStateMixin {
+  bool isLight = true;
+  late AnimationController controller;
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(vsync: this, duration: DurationItems.durationNormal());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Center(child: Lottie.network("https://lottie.host/6790d1e3-947f-43be-8b20-2e085c04593e/30adNGWOvk.json")),
+      appBar: AppBar(
+        actions: [
+          InkWell(
+              onTap: () {
+                controller.animateTo(isLight ? 0.5 : 1);
+                isLight = !isLight;
+                Future.microtask(() {
+                  context.read<ThemeNotifier>().changeTheme();
+                });
+              },
+              child: Lottie.asset(
+                LottieItems.themechange.lottiePath,
+                repeat: false,
+                controller: controller,
+              ))
+        ],
+      ),
     );
   }
 }
