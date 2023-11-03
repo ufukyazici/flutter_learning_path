@@ -47,6 +47,8 @@ dependencies:
   #cache
   shared_preferences: ^2.2.2
   flutter_secure_storage: ^9.0.0
+  #core
+  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:

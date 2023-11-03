@@ -25,6 +25,7 @@ Data _$DataFromJson(Map<String, dynamic> json) => Data(
       color: json['color'] as String?,
       pantoneValue: json['pantoneValue'] as String?,
       price: json['price'] as String?,
+      statusCode: $enumDecodeNullable(_$StatusCodeEnumMap, json['statusCode']),
     );
 
 Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
@@ -34,4 +35,10 @@ Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
       'color': instance.color,
       'pantoneValue': instance.pantoneValue,
       'price': instance.price,
+      'statusCode': _$StatusCodeEnumMap[instance.statusCode],
     };
+
+const _$StatusCodeEnumMap = {
+  StatusCode.success: 200,
+  StatusCode.weird: 500,
+};
