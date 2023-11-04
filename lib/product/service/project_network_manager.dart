@@ -8,4 +8,18 @@ class ProjectNetworkManager {
 
   static ProjectNetworkManager instance = ProjectNetworkManager._();
   Dio get service => _dio;
+
+  void addBaseHeaderToToken(String token) {
+    _dio.options = _dio.options.copyWith(headers: {"Authorization": token});
+  }
+}
+
+class DurationManager {
+  DurationManager._();
+  static DurationManager? _manager;
+  static DurationManager get manager {
+    if (_manager != null) return _manager!;
+    _manager = DurationManager._();
+    return _manager!;
+  }
 }
