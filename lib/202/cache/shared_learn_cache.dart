@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/202/cache/shared_manager.dart';
-import 'package:flutter_application_1/202/cache/shared_singleton.dart';
+import 'package:flutter_application_1/202/cache/shared_manager_singleton.dart';
 import 'package:flutter_application_1/202/cache/user_model.dart';
 
 class SharedLearn extends StatefulWidget {
@@ -22,12 +21,12 @@ class _SharedLearnState extends LoadingStateful<SharedLearn> {
   }
 
   Future<void> _initialize() async {
-    await SharedSingleton.instance.init();
+    await SharedManagerSingleton.instance.init();
     getCaches();
   }
 
   Future<void> getCaches() async {
-    _onChangeValue(SharedSingleton.instance.getString(SharedKeys.counter) ?? "");
+    _onChangeValue(SharedManagerSingleton.instance.getString(SharedManagerSingletonKeys.counter) ?? "");
   }
 
   void _onChangeValue(String value) {
@@ -72,8 +71,9 @@ class _SharedLearnState extends LoadingStateful<SharedLearn> {
     return FloatingActionButton(
       onPressed: () async {
         changeLoading();
-        await SharedSingleton.instance.saveString(SharedKeys.counter, _currentValue.toString());
+        await SharedManagerSingleton.instance.saveString(SharedManagerSingletonKeys.counter, _currentValue.toString());
         changeLoading();
+        getCaches();
       },
       child: const Icon(Icons.save),
     );
@@ -83,8 +83,9 @@ class _SharedLearnState extends LoadingStateful<SharedLearn> {
     return FloatingActionButton(
       onPressed: () async {
         changeLoading();
-        await SharedSingleton.instance.removeItem(SharedKeys.counter);
+        await SharedManagerSingleton.instance.removeItem(SharedManagerSingletonKeys.counter);
         changeLoading();
+        getCaches();
       },
       child: const Icon(Icons.delete),
     );
