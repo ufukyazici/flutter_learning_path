@@ -1,3 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:equatable/equatable.dart';
+
 class UserManagement<T extends AdminUser> {
   final T admin;
 
@@ -33,15 +36,24 @@ class UYModel<T> {
   UYModel({required this.items});
 }
 
-class GenericUser {
+class GenericUser extends Equatable {
   final String name;
   final int id;
   final int money;
 
-  GenericUser({required this.name, required this.id, required this.money});
+  const GenericUser({required this.name, required this.id, required this.money});
+  bool checkUserExists(String name) {
+    return this.name == name;
+  }
+
+  @override
+  String toString() => 'GenericUser(name: $name, id: $id, money: $money)';
+
+  @override
+  List<Object?> get props => [id];
 }
 
 class AdminUser extends GenericUser {
   final int role;
-  AdminUser(this.role, {required super.name, required super.id, required super.money});
+  const AdminUser(this.role, {required super.name, required super.id, required super.money});
 }

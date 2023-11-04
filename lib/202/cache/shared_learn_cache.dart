@@ -73,7 +73,6 @@ class _SharedLearnState extends LoadingStateful<SharedLearn> {
         changeLoading();
         await SharedManagerSingleton.instance.saveString(SharedManagerSingletonKeys.counter, _currentValue.toString());
         changeLoading();
-        getCaches();
       },
       child: const Icon(Icons.save),
     );
@@ -85,7 +84,6 @@ class _SharedLearnState extends LoadingStateful<SharedLearn> {
         changeLoading();
         await SharedManagerSingleton.instance.removeItem(SharedManagerSingletonKeys.counter);
         changeLoading();
-        getCaches();
       },
       child: const Icon(Icons.delete),
     );
