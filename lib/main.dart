@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/303/lottie_learn.dart';
+import 'package:flutter_application_1/product/constant/project_items.dart';
 import 'package:flutter_application_1/product/global/resource_context.dart';
 import 'package:flutter_application_1/product/global/theme_notifier.dart';
 import 'package:provider/provider.dart';
@@ -28,6 +29,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      title: ProjectItems.projectName,
       // appbarın her sayfada aynı olmasını istediğimiz özellikleri copywith ile yapıyoruz.
       theme: context.watch<ThemeNotifier>().currentTheme,
       // ThemeData.dark().copyWith(
