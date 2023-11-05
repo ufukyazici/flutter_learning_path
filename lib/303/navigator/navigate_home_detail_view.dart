@@ -31,6 +31,7 @@ class _NavigatorHomeDetailViewState extends State<NavigatorHomeDetailView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
         title: Text(_id ?? ""),
       ),

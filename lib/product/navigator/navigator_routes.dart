@@ -3,9 +3,9 @@ import 'package:flutter_application_1/303/navigator/navigate_home_detail_view.da
 import 'package:flutter_application_1/303/navigator/navigate_home_view.dart';
 
 class NavigatorRoutes {
-  static const _paraf = "/";
+  static const paraf = "/";
   final items = {
-    _paraf: (context) => const LottieLearn(),
+    paraf: (context) => const LottieLearn(),
     NavigateRoutes.home.getRoutePath: (context) => const NavigatorHomeView(),
     NavigateRoutes.detail.getRoutePath: (context) => const NavigatorHomeDetailView(),
   };

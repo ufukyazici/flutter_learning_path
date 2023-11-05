@@ -4,7 +4,6 @@ import 'package:flutter_application_1/product/constant/project_items.dart';
 import 'package:flutter_application_1/product/global/resource_context.dart';
 import 'package:flutter_application_1/product/global/theme_notifier.dart';
 import 'package:flutter_application_1/product/navigator/navigator_custom.dart';
-import 'package:flutter_application_1/product/navigator/navigator_routes.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -57,7 +56,7 @@ class _MyAppState extends State<MyApp> {
           return const LottieLearn();
         });
       },
-      routes: NavigatorRoutes().items,
+      // routes: NavigatorRoutes().items,
       onGenerateRoute: NavigatorCustom().onGenerateRoute,
       // home: const SharedLearn(),
     );
