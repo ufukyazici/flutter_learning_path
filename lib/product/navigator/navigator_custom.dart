@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/303/lottie_learn.dart';
+import 'package:flutter_application_1/303/mobx_image_picker/view/mobx_image_upload_view.dart';
 import 'package:flutter_application_1/303/navigator/navigate_home_detail_view.dart';
 import 'package:flutter_application_1/303/navigator/navigate_home_view.dart';
 import 'package:flutter_application_1/product/navigator/navigator_routes.dart';
@@ -7,7 +7,7 @@ import 'package:flutter_application_1/product/navigator/navigator_routes.dart';
 class NavigatorCustom {
   Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
     if (routeSettings.name?.isEmpty ?? true) {
-      return _navigateToNormal(const LottieLearn());
+      return _navigateToNormal(const MobxImageUpload());
     }
     final routes = routeSettings.name == NavigatorRoutes.paraf
         ? NavigateRoutes.init
@@ -15,7 +15,7 @@ class NavigatorCustom {
 
     switch (routes) {
       case NavigateRoutes.init:
-        return _navigateToNormal(const LottieLearn());
+        return _navigateToNormal(const MobxImageUpload());
       case NavigateRoutes.home:
         return _navigateToNormal(const NavigatorHomeView());
       case NavigateRoutes.detail:
