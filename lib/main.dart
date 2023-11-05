@@ -4,6 +4,7 @@ import 'package:flutter_application_1/product/constant/project_items.dart';
 import 'package:flutter_application_1/product/global/resource_context.dart';
 import 'package:flutter_application_1/product/global/theme_notifier.dart';
 import 'package:flutter_application_1/product/navigator/navigator_custom.dart';
+import 'package:flutter_application_1/product/navigator/navigator_manager.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -58,6 +59,7 @@ class _MyAppState extends State<MyApp> {
       },
       // routes: NavigatorRoutes().items,
       onGenerateRoute: NavigatorCustom().onGenerateRoute,
+      navigatorKey: NavigatorManager.instance.navigatorKey,
       // home: const SharedLearn(),
     );
   }
