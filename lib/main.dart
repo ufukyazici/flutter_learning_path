@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/303/lottie_learn.dart';
 import 'package:flutter_application_1/product/constant/project_items.dart';
 import 'package:flutter_application_1/product/global/resource_context.dart';
 import 'package:flutter_application_1/product/global/theme_notifier.dart';
+import 'package:flutter_application_1/product/navigator/navigator_custom.dart';
 import 'package:flutter_application_1/product/navigator/navigator_routes.dart';
 import 'package:provider/provider.dart';
 
@@ -50,7 +52,13 @@ class _MyAppState extends State<MyApp> {
       //     // colorScheme: const ColorScheme.dark(),
       //     appBarTheme: const AppBarTheme(centerTitle: true, backgroundColor: Colors.transparent, elevation: 0)),
       // initialRoute: "/",
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(builder: (context) {
+          return const LottieLearn();
+        });
+      },
       routes: NavigatorRoutes().items,
+      onGenerateRoute: NavigatorCustom().onGenerateRoute,
       // home: const SharedLearn(),
     );
   }

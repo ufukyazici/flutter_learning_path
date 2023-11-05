@@ -13,16 +13,19 @@ class _NavigatorHomeDetailViewState extends State<NavigatorHomeDetailView> {
   @override
   void initState() {
     super.initState();
+    _id = widget.id;
+    if (_id == null) {
+      Future.microtask(() {
+        final modelId = ModalRoute.of(context)?.settings.arguments;
+        print(modelId);
+        setState(() {
+          _id = modelId is String ? modelId : widget.id;
+        });
+      });
+    }
     // final modelId = ModalRoute.of(context)?.settings.arguments;
     // print(modelId);
     // _id = widget.id ?? "";
-    Future.microtask(() {
-      final modelId = ModalRoute.of(context)?.settings.arguments;
-      print(modelId);
-      setState(() {
-        _id = modelId is String ? modelId : widget.id;
-      });
-    });
   }
 
   @override
