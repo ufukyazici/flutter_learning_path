@@ -9,7 +9,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 @GenerateMocks([ReqresProvider, ResourceContext])
 void main() {
-  setUp(() {});
+  setUp(() {
+    Map<String, Object> values = <String, Object>{"vb": "veli"};
+    SharedPreferences.setMockInitialValues(values);
+  });
   test('saveToLocale - Test', () {
     var mockProvider = ReqresProvider(ResourceService(dio: Dio()));
     final resourceContext = ResourceContext();
@@ -18,10 +21,8 @@ void main() {
   });
 
   test('userTest - Test', () async {
-    SharedPreferences reference = await SharedPreferences.getInstance();
     var userViewModel = UserSaveViewModel();
-    final result = userViewModel.getData("vb", reference);
-
+    final result = userViewModel.getData("vb", MockStore());
     expect(result, false);
   });
 }
