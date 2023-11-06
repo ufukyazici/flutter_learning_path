@@ -76,7 +76,9 @@ class _SaveResourcesButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
         onPressed: () {
-          context.read<ReqresProvider>().saveToLocale(context.read<ResourceContext>());
+          context
+              .read<ReqresProvider>()
+              .saveToLocale(context.read<ResourceContext>(), context.read<ReqresProvider>().resources);
           Navigator.of(context).push(MaterialPageRoute(builder: (context) {
             return const CallBackLearn();
           }));

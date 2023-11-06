@@ -21,7 +21,8 @@ class ReqresProvider extends ChangeNotifier {
     _changeLoading();
   }
 
-  void saveToLocale(ResourceContext resourceContext) {
+  bool? saveToLocale(ResourceContext resourceContext, List<Data> resources) {
     resourceContext.saveModel(ResourceModel(data: resources));
+    return resourceContext.model?.data?.isNotEmpty;
   }
 }
