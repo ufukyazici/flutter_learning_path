@@ -19,13 +19,3 @@ class LoginService extends ILoginService {
         data: model, parseModel: TokenModel(), method: RequestType.POST);
   }
 }
-
-class LoginService2 extends ILoginService {
-  LoginService2(super.networkManager);
-
-  @override
-  Future<IResponseModel<TokenModel?, INetworkModel<dynamic>?>> login(LoginModel model) async {
-    return await networkManager.send<TokenModel, TokenModel>(_loginPath,
-        data: model, parseModel: TokenModel(), method: RequestType.GET);
-  }
-}

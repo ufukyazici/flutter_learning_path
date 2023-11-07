@@ -1,14 +1,24 @@
 import 'package:flutter/material.dart';
 
-class ImageLearn extends StatelessWidget {
-  ImageLearn({super.key});
-  final String imageUrl =
-      "https://www.shareicon.net/data/512x512/2016/09/01/822957_apple_512x512.png";
+class ImageLearn extends StatefulWidget {
+  final String token;
+  const ImageLearn({super.key, required this.token});
+
+  @override
+  State<ImageLearn> createState() => _ImageLearnState();
+}
+
+class _ImageLearnState extends State<ImageLearn> {
+  final String imageUrl = "https://www.shareicon.net/data/512x512/2016/09/01/822957_apple_512x512.png";
+
   final ImageItems imageItems = ImageItems();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(widget.token),
+      ),
       body: Column(children: [
         SizedBox(
           height: 300,
@@ -20,8 +30,7 @@ class ImageLearn extends StatelessWidget {
           width: 200,
           child: Image.network(
             imageUrl,
-            errorBuilder: (context, error, stackTrace) =>
-                const CircularProgressIndicator(color: Colors.deepPurple),
+            errorBuilder: (context, error, stackTrace) => const CircularProgressIndicator(color: Colors.deepPurple),
           ),
         ),
       ]),
