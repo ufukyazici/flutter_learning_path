@@ -32,82 +32,103 @@ class _LoginViewState extends State<LoginViewAdvance> {
     return BlocProvider<LoginCubit>(
       create: (context) => LoginCubit(LoginService(VexanaNetworkManager())),
       child: Scaffold(
-        appBar: AppBar(
-          title: BlocBuilder<LoginCubit, LoginState>(
-            builder: (context, state) {
-              return state.isLoading ? CircularProgressIndicator(color: context.general.randomColor) : const SizedBox();
-            },
-          ),
-          centerTitle: true,
-        ),
+        appBar: AppBar(),
         body: Form(
             key: _formLoginKey,
             child: Padding(
               padding: const PagePadding.all(),
-              child: BlocSelector<LoginCubit, LoginState, bool>(
-                selector: (state) {
-                  return state.isLoading;
-                },
-                builder: (context, state) {
-                  return IgnorePointer(
-                    ignoring: state,
-                    child: AnimatedOpacity(
-                      duration: context.duration.durationLow,
-                      opacity: state ? 0.3 : 1,
-                      child: Column(
-                        children: [
-                          TextFormField(
-                            validator: (String? value) => value.ext.isValidEmail ? null : "Email is not valid",
-                            controller: _emailController,
-                            decoration: const InputDecoration(
-                              hintText: "Email",
-                              labelText: "Email",
-                              border: OutlineInputBorder(),
-                            ),
-                          ),
-                          TextFormField(
-                            obscureText: _isVisible,
-                            controller: _passwordController,
-                            decoration: InputDecoration(
-                                hintText: "Password",
-                                labelText: "Password",
-                                border: const OutlineInputBorder(),
-                                suffixIcon: IconButton(
-                                    onPressed: _changeVisibility,
-                                    icon: Icon(_isVisible ? Icons.visibility_off : Icons.visibility))),
-                          ),
-                          SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.4,
-                              child: BlocBuilder<LoginCubit, LoginState>(
-                                builder: (context, state) {
-                                  return BlocListener<LoginCubit, LoginState>(
-                                    listener: (context, state) {
-                                      if (state.isCompleted) {
-                                        context.route.navigateToPage(ImageLearn(
-                                          token: state.tokenModel?.token ?? "",
-                                        ));
-                                      }
-                                    },
-                                    child: ElevatedButton(
-                                        onPressed: () {
-                                          if (_formLoginKey.currentState?.validate() ?? false) {
-                                            context
-                                                .read<LoginCubit>()
-                                                .checkUser(_emailController.text, _passwordController.text);
-                                          }
-                                        },
-                                        child: Text("$_loginText - ${state.model?.email ?? ''}")),
-                                  );
-                                },
-                              ))
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
+              child: _loginEmailFields(),
             )),
       ),
+    );
+  }
+
+  BlocSelector<LoginCubit, LoginState, bool> _loginEmailFields() {
+    return BlocSelector<LoginCubit, LoginState, bool>(
+      selector: (state) {
+        return state.isLoading;
+      },
+      builder: (context, state) {
+        return IgnorePointer(
+          ignoring: state,
+          child: AnimatedOpacity(
+            duration: context.duration.durationLow,
+            opacity: state ? 0.3 : 1,
+            child: Column(
+              children: [
+                TextFormField(
+                  validator: (String? value) => value.ext.isValidEmail ? null : "Email is not valid",
+                  controller: _emailController,
+                  decoration: const InputDecoration(
+                    hintText: "Email",
+                    labelText: "Email",
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                TextFormField(
+                  obscureText: _isVisible,
+                  controller: _passwordController,
+                  decoration: InputDecoration(
+                      hintText: "Password",
+                      labelText: "Password",
+                      border: const OutlineInputBorder(),
+                      suffixIcon: IconButton(
+                          onPressed: _changeVisibility,
+                          icon: Icon(_isVisible ? Icons.visibility_off : Icons.visibility))),
+                ),
+                SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    child: _LoginButton(
+                        formLoginKey: _formLoginKey,
+                        emailController: _emailController,
+                        passwordController: _passwordController,
+                        loginText: _loginText))
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _LoginButton extends StatelessWidget {
+  const _LoginButton({
+    required GlobalKey<FormState> formLoginKey,
+    required TextEditingController emailController,
+    required TextEditingController passwordController,
+    required String loginText,
+  })  : _formLoginKey = formLoginKey,
+        _emailController = emailController,
+        _passwordController = passwordController,
+        _loginText = loginText;
+
+  final GlobalKey<FormState> _formLoginKey;
+  final TextEditingController _emailController;
+  final TextEditingController _passwordController;
+  final String _loginText;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<LoginCubit, LoginState>(
+      builder: (context, state) {
+        return BlocListener<LoginCubit, LoginState>(
+          listener: (context, state) {
+            if (state.isCompleted) {
+              context.route.navigateToPage(ImageLearn(
+                token: state.tokenModel?.token ?? "",
+              ));
+            }
+          },
+          child: ElevatedButton(
+              onPressed: () {
+                if (_formLoginKey.currentState?.validate() ?? false) {
+                  context.read<LoginCubit>().checkUser(_emailController.text, _passwordController.text);
+                }
+              },
+              child: state.isLoading ? const CircularProgressIndicator() : Text(_loginText)),
+        );
+      },
     );
   }
 }
