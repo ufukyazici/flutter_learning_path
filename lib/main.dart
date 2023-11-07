@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/303/lottie_learn.dart';
-import 'package:flutter_application_1/303/testable/image_generic_picker.dart';
+import 'package:flutter_application_1/303/package/kartal_view.dart';
 import 'package:flutter_application_1/product/constant/project_items.dart';
 import 'package:flutter_application_1/product/global/resource_context.dart';
 import 'package:flutter_application_1/product/global/theme_notifier.dart';
@@ -61,7 +61,7 @@ class _MyAppState extends State<MyApp> {
       // routes: NavigatorRoutes().items,
       onGenerateRoute: NavigatorCustom().onGenerateRoute,
       navigatorKey: NavigatorManager.instance.navigatorKey,
-      home: const ImagePickerGenericView(),
+      home: const KartalView(),
     );
   }
 }

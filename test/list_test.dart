@@ -1,6 +1,5 @@
 import 'package:collection/collection.dart';
 import 'package:flutter_application_1/303/generic_learn.dart';
-import 'package:flutter_application_1/product/widget/card/high_card.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -12,9 +11,9 @@ void main() {
       const GenericUser(name: "sülü", id: 3, money: 30),
       const GenericUser(name: "recep", id: 3, money: 40),
     ];
-    List<HighCard> highCards = users.map((e) {
-      return HighCard(items: e.name.split("").toList());
-    }).toList();
+    // List<HighCard> highCards = users.map((e) {
+    //   return HighCard(items: e.name.split("").toList());
+    // }).toList();
     try {
       final response = users.singleWhere(
         (element) => element.checkUserExists("veli11"),

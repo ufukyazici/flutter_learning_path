@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   #network
   dio: ^5.3.3
+  url_launcher: ^6.2.1
   #states
   provider: ^6.0.5
   flutter_mobx: ^2.1.1
@@ -54,6 +55,8 @@ dependencies:
   #core
   equatable: ^2.0.5
   collection: any
+  #context
+  kartal: ^3.5.0
 
 dev_dependencies:
   flutter_test:
