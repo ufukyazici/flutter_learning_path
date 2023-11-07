@@ -1,22 +1,24 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/404/bloc/feature/login/view/login_view.dart';
 import 'package:flutter_application_1/product/constant/project_items.dart';
-import 'package:flutter_application_1/product/global/resource_context.dart';
 import 'package:flutter_application_1/product/global/theme_notifier.dart';
+import 'package:flutter_application_1/product/init/product_init.dart';
 import 'package:flutter_application_1/product/navigator/navigator_custom.dart';
 import 'package:flutter_application_1/product/navigator/navigator_manager.dart';
 import 'package:provider/provider.dart';
 
-void main() {
-  runApp(MultiProvider(
-    providers: [
-      Provider(create: (_) => ResourceContext()),
-      ChangeNotifierProvider<ThemeNotifier>(
-        create: (context) => ThemeNotifier(),
-      )
-    ],
-    builder: (context, child) => const MyApp(),
-  ));
+Future<void> main() async {
+  final productInit = ProductInit();
+  await productInit.init();
+
+  runApp(EasyLocalization(
+      supportedLocales: productInit.localizationInit.supportedLocales,
+      path: productInit.localizationInit.localizationPath, // <-- change the path of the translation files
+      child: MultiProvider(
+        providers: productInit.providers,
+        builder: (context, child) => const MyApp(),
+      )));
 }
 
 class MyApp extends StatefulWidget {
@@ -52,6 +54,9 @@ class _MyAppState extends State<MyApp> {
       //     // colorScheme: const ColorScheme.dark(),
       //     appBarTheme: const AppBarTheme(centerTitle: true, backgroundColor: Colors.transparent, elevation: 0)),
       // initialRoute: "/",
+      builder: (context, child) {
+        return MediaQuery(data: MediaQuery.of(context).copyWith(textScaleFactor: 1), child: child ?? const SizedBox());
+      },
       onUnknownRoute: (settings) {
         return MaterialPageRoute(builder: (context) {
           return const LoginViewAdvance();
