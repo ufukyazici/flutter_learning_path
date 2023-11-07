@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:vexana/vexana.dart';
 
 void main() {
-  late LoginService loginService;
+  late ILoginService loginService;
   setUp(() {
     loginService = LoginService(NetworkManager<EmptyModel>(options: BaseOptions(baseUrl: 'https://reqres.in/api')));
   });
