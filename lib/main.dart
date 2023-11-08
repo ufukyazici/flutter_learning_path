@@ -34,6 +34,9 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: ProjectItems.projectName,
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       // appbarın her sayfada aynı olmasını istediğimiz özellikleri copywith ile yapıyoruz.
       theme: context.watch<ThemeNotifier>().currentTheme,
       // ThemeData.dark().copyWith(
