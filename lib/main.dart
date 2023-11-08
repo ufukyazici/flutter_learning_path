@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/404/bloc/feature/login/view/login_view.dart';
+import 'package:flutter_application_1/404/compute/compute_learn.dart';
 import 'package:flutter_application_1/product/constant/project_items.dart';
 import 'package:flutter_application_1/product/global/theme_notifier.dart';
 import 'package:flutter_application_1/product/init/product_init.dart';
@@ -68,7 +69,7 @@ class _MyAppState extends State<MyApp> {
       // routes: NavigatorRoutes().items,
       onGenerateRoute: NavigatorCustom().onGenerateRoute,
       navigatorKey: NavigatorManager.instance.navigatorKey,
-      home: const LoginViewAdvance(),
+      home: const ComputeLearnView(),
     );
   }
 }
