@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/product/init/lang/locale_keys.g.dart';
 
 class ComputeLearnView extends StatefulWidget {
   const ComputeLearnView({super.key});
@@ -20,7 +19,7 @@ class _ComputeLearnViewState extends State<ComputeLearnView> {
       body: Column(
         children: [
           const CircularProgressIndicator(),
-          Text(LocaleKeys.login_welcome.tr()),
+          const Text('login.welcome').tr(),
         ],
       ),
       floatingActionButton: FloatingActionButton(
